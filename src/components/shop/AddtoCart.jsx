@@ -19,9 +19,12 @@ const AddtoCart = () => {
       if (userString) {
         const userID = JSON.parse(userString)._id;
 
-        const res = await axios.post("http://localhost:4010/cart/user", {
-          userID,
-        });
+        const res = await axios.post(
+          "https://shopecombackend-6e34.onrender.com/cart/user",
+          {
+            userID,
+          }
+        );
         console.log("res.data:", res.data);
         setCart(res.data.cartItems);
       }
@@ -46,15 +49,18 @@ const AddtoCart = () => {
 
     try {
       for (let cartItem of items) {
-        await axios.post("http://localhost:4010/purchase", {
+        await axios.post("https://shopecombackend-6e34.onrender.com/purchase", {
           userID: parsedUser._id,
           productID: cartItem.productID._id,
           quantity: cartItem.quantity,
         });
 
-        await axios.delete("http://localhost:4010/cart/delete", {
-          data: { cartID: cartItem._id },
-        });
+        await axios.delete(
+          "https://shopecombackend-6e34.onrender.com/cart/delete",
+          {
+            data: { cartID: cartItem._id },
+          }
+        );
       }
 
       alert("All items purchased successfully!");
@@ -86,10 +92,13 @@ const AddtoCart = () => {
     if (newQuantity < 1) return;
 
     try {
-      await axios.post("http://localhost:4010/cart/changequantity", {
-        cartID,
-        newQuantity,
-      });
+      await axios.post(
+        "https://shopecombackend-6e34.onrender.com/cart/changequantity",
+        {
+          cartID,
+          newQuantity,
+        }
+      );
 
       const updatedItems = items.map((item) =>
         item._id === cartID ? { ...item, quantity: newQuantity } : item
@@ -102,12 +111,17 @@ const AddtoCart = () => {
 
   const handleDelete = async (cartID) => {
     try {
-      const res = await axios.delete("http://localhost:4010/cart/delete", {
-        data: { cartID },
-      });
+      const res = await axios.delete(
+        "https://shopecombackend-6e34.onrender.com/cart/delete",
+        {
+          data: { cartID },
+        }
+      );
       console.log("Deleted:", res.data);
 
-      const updatedCart = await axios.get("http://localhost:4010/cart/all");
+      const updatedCart = await axios.get(
+        "https://shopecombackend-6e34.onrender.com/cart/all"
+      );
       setCart(updatedCart.data.cartItems);
     } catch (error) {
       console.error("Error deleting cart item:", error);

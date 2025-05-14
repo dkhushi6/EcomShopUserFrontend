@@ -10,7 +10,9 @@ const NewProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchNewPro = async () => {
-      const res = await axios.get("http://localhost:4010/product/newlymade");
+      const res = await axios.get(
+        "https://shopecombackend-6e34.onrender.com/product/newlymade"
+      );
       setProducts(res.data.products);
     };
     fetchNewPro();

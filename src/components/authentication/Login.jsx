@@ -11,13 +11,16 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const res = await axios.post("http://localhost:4010/user/login", {
-      email: info.includes("@") ? info : undefined,
-      phoneNumber: info.startsWith("+") ? info : undefined,
-      userUsername:
-        !info.includes("@") && !info.startsWith("+") ? info : undefined,
-      password,
-    });
+    const res = await axios.post(
+      "https://shopecombackend-6e34.onrender.com/user/login",
+      {
+        email: info.includes("@") ? info : undefined,
+        phoneNumber: info.startsWith("+") ? info : undefined,
+        userUsername:
+          !info.includes("@") && !info.startsWith("+") ? info : undefined,
+        password,
+      }
+    );
     if (res.data.message === "login successfull !!!!!!!!!!") {
       console.log(res.data.user);
       setUser(res.data.user);

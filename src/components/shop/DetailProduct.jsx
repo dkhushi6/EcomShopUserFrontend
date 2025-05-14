@@ -26,11 +26,14 @@ const DetailProduct = () => {
   }, []);
 
   const addToCart = async () => {
-    const res = await axios.post("http://localhost:4010/cart", {
-      productID,
-      userID,
-      quantity,
-    });
+    const res = await axios.post(
+      "https://shopecombackend-6e34.onrender.com/cart",
+      {
+        productID,
+        userID,
+        quantity,
+      }
+    );
     console.log(res.data);
     if (res.data.message === "item added to cart successfully ") {
       return alert("Item added to the cart successfully!");
@@ -38,11 +41,14 @@ const DetailProduct = () => {
   };
 
   const handlePurchase = async () => {
-    const res = await axios.post("http://localhost:4010/purchase", {
-      productID,
-      userID,
-      quantity,
-    });
+    const res = await axios.post(
+      "https://shopecombackend-6e34.onrender.com/purchase",
+      {
+        productID,
+        userID,
+        quantity,
+      }
+    );
     console.log(res.data);
     if (res.data.message === "purchase successfully done") {
       return alert("Item purchased successfully!");

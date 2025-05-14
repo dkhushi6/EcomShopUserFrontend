@@ -14,15 +14,18 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleSignup = async () => {
-    const res = await axios.post("http://localhost:4010/user/signup", {
-      name,
-      email,
-      password,
-      phoneNumber,
-      shippingAddress,
-      userImg,
-      userUsername,
-    });
+    const res = await axios.post(
+      "https://shopecombackend-6e34.onrender.com/user/signup",
+      {
+        name,
+        email,
+        password,
+        phoneNumber,
+        shippingAddress,
+        userImg,
+        userUsername,
+      }
+    );
     console.log(res.data);
     if (res.data.message === "user created successfully !!") {
       alert("account created succesfully");

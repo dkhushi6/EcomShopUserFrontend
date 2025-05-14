@@ -14,9 +14,12 @@ const Order = () => {
         const userID = JSON.parse(userString)._id;
 
         try {
-          const res = await axios.post("http://localhost:4010/purchase/user", {
-            userID,
-          });
+          const res = await axios.post(
+            "https://shopecombackend-6e34.onrender.com/purchase/user",
+            {
+              userID,
+            }
+          );
           console.log(res.data);
           setOrder(res.data.orders);
         } catch (err) {

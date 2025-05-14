@@ -9,9 +9,12 @@ const Shop = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const res = await axios.post("http://localhost:4010/product/category", {
-          category,
-        });
+        const res = await axios.post(
+          "https://shopecombackend-6e34.onrender.com/product/category",
+          {
+            category,
+          }
+        );
         setProducts(res.data.catProduct);
         console.log(res.data.catProduct);
       } catch (err) {
